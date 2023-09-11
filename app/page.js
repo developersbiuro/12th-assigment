@@ -8,9 +8,17 @@ import Footer from './src/components/footer/Footer'
 
 export default function Home() {
   return (
-    <>
-    <Navbar/>
-    <Footer/>
-    </>
+    < div className="bd">
+      <Navbar />
+      <div className="container ">
+        <h1 className="mar ul"><b><b>"GITHUB Api Setup"</b></b></h1>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="floatingInput" placeholder="enter github UserName" />
+          <label for="floatingInput">Enter Github UserName</label>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
   )
 }

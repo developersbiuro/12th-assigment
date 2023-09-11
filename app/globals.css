@@ -23,3 +23,10 @@
 .logomar{
   margin: 10px;
 }
+.bd{
+  background-image: url(./src/asset/image/4.png);
+  background-size: 100%;
+}
+.mar{
+  margin-top: 20px;
+}
