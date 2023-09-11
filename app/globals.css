@@ -15,7 +15,10 @@
 .ft{
   background-color:rgb(56, 56, 71);
   padding: 20px;
+  margin-top: 100px;
   color: white;
+  background-image: url(./src/asset/image/1.png);
+  background-size: 100%;
 }
 .logomar{
   margin: 10px;
