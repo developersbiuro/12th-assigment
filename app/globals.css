@@ -15,7 +15,7 @@
 .ft{
   background-color:rgb(56, 56, 71);
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 200px;
   color: white;
   background-image: url(./src/asset/image/1.png);
   background-size: 100%;
@@ -26,6 +26,7 @@
 .bd{
   background-image: url(./src/asset/image/4.png);
   background-size: 100%;
+  
 }
 .mar{
   margin-top: 20px;
@@ -40,8 +41,38 @@
   color: white;
   background-image: url(./src/asset/image/6.png);
   background-size: 100%;
-  max-width: 640px;
+  max-width: 740px;
+  min-height: 200px;
+ 
+  box-shadow: 0 4px 8px 0 rgb(127, 223, 255), 0 6px 20px 0 rgb(127, 223, 255);
+
+  
 }
 .cdc{
   color: white;
+}
+.cardimg{
+  margin: 10px;
+  min-width: 250px;
+  min-height: 250px;
+
+}
+.line{
+  color:cyan;
+  
+}
+.btnc{
+  border-color: magenta;
+}
+.footmar{
+  margin-top: 230px;
+  flex: end;
+}
+.cardmar{
+  margin-left: 20px;
+
+}
+.titl{
+  box-shadow: 0 4px 8px 0 rgb(127, 223, 255), 0 6px 20px 0 rgb(127, 223, 255);
+
 }

@@ -10,7 +10,7 @@ import whimg from "../../asset/image/pngwing.com.png"
 
 export default function Footer() {
     return (
-        <div className='container-fluid ft mar'>
+        <div className='container-fluid ft footmar mar'>
             <div className='container mar'>
                 <div className='row ftmar'>
                     <div className='col-lg-4'> <h1><b className='logo '>Developers-Biuro</b></h1> <h6 className="mar ftmar">Lorem ipsum dolor sit amet, consectetur adipiscing
