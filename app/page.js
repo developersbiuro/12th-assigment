@@ -11,10 +11,13 @@ export default function Home() {
     < div className="bd">
       <Navbar />
       <div className="container ">
-        <h1 className="mar ul"><b><b>"GITHUB Api Setup"</b></b></h1>
-        <div class="form-floating mb-2">
-          <input type="text" class="form-control fr" id="floatingInput" placeholder="enter github UserName" />
-          <label for="floatingInput">Enter Github UserName</label>
+        <h1 className="mar ul"><b><b>"GITHUB Api Program"</b></b></h1>
+        <div>
+          <form className="d-flex form-floating" role="search">
+            <input className="form-control me-2 fr" id="floatingInput" type="search" placeholder="Enter" aria-label="Search" />
+            <label htmlFor="floatingInput">Enter Github UserName</label>
+            <button className="btn btn-outline-info" >Fetch User</button>
+          </form>
         </div>
       </div>
 
