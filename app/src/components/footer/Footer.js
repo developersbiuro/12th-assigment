@@ -19,7 +19,7 @@ export default function Footer() {
                         nostrud exercitation ullamco laboris nisi ut aliquip
                         ea commodo consequat.</h6>
 
-                        <Link className="ul" href="https://wa.me/+923036253428"><h3>contact us on<br/><Image src={whimg} width={25}></Image> WhatsApp</h3> </Link>
+                        <Link className="ul" href="https://wa.me/+923036253428"><h3>contact us on<br/><Image alt=" " src={whimg} width={25}></Image> WhatsApp</h3> </Link>
 
                     </div>
                     <div className='col-lg-2'><h2><b>Our Links</b></h2>
@@ -44,10 +44,10 @@ export default function Footer() {
                     </div>
                     <div className='col-lg-3'>
                     <h2><b>Follow Us On</b></h2>
-                    <Image src={img} width={150} ></Image> <br/>
-                    <Link href="https://www.instagram.com/theeditorsspot/" target="blank"><Image className="logomar" src={logoimg1}></Image></Link>
-                    <Link href="https://www.facebook.com/profile.php?id=100074305142347" target="blank"><Image className="logomar" src={logoimg2}></Image></Link>
-                    <Link href=""><Image className="logomar" src={logoimg3}></Image></Link>
+                    <Image alt=" " src={img} width={150} ></Image> <br/>
+                    <Link href="https://www.instagram.com/theeditorsspot/" target="blank"><Image alt=" " className="logomar" src={logoimg1}></Image></Link>
+                    <Link href="https://www.facebook.com/profile.php?id=100074305142347" target="blank"><Image alt=" " className="logomar" src={logoimg2}></Image></Link>
+                    <Link href=""><Image alt=" " className="logomar" src={logoimg3}></Image></Link>
 
                        
                     </div>

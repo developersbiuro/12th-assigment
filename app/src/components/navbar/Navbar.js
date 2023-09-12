@@ -12,7 +12,7 @@ export default function Navbar() {
 
         <nav className="navbar bg-dark border-bottom border-body navcl" data-bs-theme="dark">
             <div className="container ul">
-                <Link className="navbar-brand" href="/"> <Image width={100} className="rounded-circle" src={logoimg}></Image> <span> <b className="logof"> Developers-Biuro</b></span>  </Link>
+                <Link className="navbar-brand" href="/"> <Image alt=" " width={100} className="rounded-circle" src={logoimg}></Image> <span> <b className="logof"> Developers-Biuro</b></span>  </Link>
 
                 {/* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,10 +20,10 @@ export default function Navbar() {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"> */}
 
 
-                <Link className="nav-link ul active" href="http://wa.me/+923036253428" target="blank"><Image width={20} src={whimg}></Image> WhatsApp</Link>
+                <Link className="nav-link ul active" href="http://wa.me/+923036253428" target="blank"><Image alt=" " width={20} src={whimg}></Image> WhatsApp</Link>
 
 
-                <Link className="nav-link ul active  " href="https://github.com/developersbiuro" target="blank"><Image width={25} src={gtimg}></Image> Github</Link>
+                <Link className="nav-link ul active  " href="https://github.com/developersbiuro" target="blank"><Image alt=" " width={25} src={gtimg}></Image> Github</Link>
 
                 <span className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
