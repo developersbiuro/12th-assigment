@@ -2,11 +2,11 @@
 import { useState } from "react"
 import axios from "axios"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+// import ""
 
 import Navbar from './src/components/navbar/Navbar'
 import Footer from './src/components/footer/Footer'
-import Image from "next/image"
+
 
 export default function Home() {
 
@@ -81,38 +81,43 @@ export default function Home() {
 
         {followers.length >= 1 &&
 
-          <table className="">
-            <tr className={`bg-gray-700 text-slate-100 py-2 my-2 rounded-3xl `}>
-              <th>Sr#</th>
-              <th>id</th>
-              <th>avator</th>
-              <th>name</th>
-              <th>type</th>
-              <th>Get Followers</th>
-              <hr />
-            </tr>
-            <hr />
-            {followers.map((element, i) => {
-              return (
-                <>
-                  <tr className="bg-gray-700 text-slate-100">
-                    <td>{i + 1}</td>
-                    <td className="tdimg">{element.id}</td>
-                    <td className="tdimg"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
-                    <td className="tid"><h4>@{element.login}</h4></td>
-                    <td>{element.type}</td>
-                    <td><button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></td>
+          <table className="mar">
 
-                  </tr>
-                  <hr />
-                </>
-              )
-            })}
+            <tbody className="mar">
+              
+              <tr >
+                <th>Sr#</th>
+                <th>id</th>
+                <th>avator</th>
+                <th>name</th>
+                <th>type</th>
+                <th>Get Followers</th>
+
+              </tr>
+
+              {followers.map((element, i) => {
+                return (
+                  <>
+                    <tr className=" trr"  >
+                      <td className="padl">{i + 1})</td>
+                      <td className="tdd padl">{element.id}</td>
+                      <td className="tdd"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
+                      <td className="tid"><h4>@{element.login}</h4></td>
+                      <td className="tdd">{element.type}</td>
+                      <td className="tdd"><button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></td>
+
+                    </tr>
+
+
+                  </>
+                )
+              })}
+            </tbody>
 
           </table>
         }
 
-        {following.length >= 1 &&
+        {/* {following.length >= 1 &&
 
           <table>
             <tr>
@@ -141,7 +146,7 @@ export default function Home() {
             })}
 
           </table>
-        }
+        } */}
 
       </div>
 
