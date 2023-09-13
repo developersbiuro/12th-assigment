@@ -12,6 +12,7 @@ export default function Home() {
 
   const [userName, setUserName] = useState(null)
   const [followers, setFollowers] = useState([])
+  const [following, setFollowing] = useState([])
   const [data, setData] = useState("")
   const onChangeHandler = (e) => {
     setUserName(e.target.value)
@@ -34,7 +35,7 @@ export default function Home() {
   const onFollowingHandler = async () => {
     let response = await axios.get(data.following_url)
     console.log("response", response.data);
-    setFollowers(response.data)
+    setFollowing(response.data)
 
   }
 
@@ -80,6 +81,39 @@ export default function Home() {
 
         {followers.length >= 1 &&
 
+          <table className="">
+            <tr className={`bg-gray-700 text-slate-100 py-2 my-2 rounded-3xl `}>
+              <th>Sr#</th>
+              <th>id</th>
+              <th>avator</th>
+              <th>name</th>
+              <th>type</th>
+              <th>Get Followers</th>
+              <hr />
+            </tr>
+            <hr />
+            {followers.map((element, i) => {
+              return (
+                <>
+                  <tr className="bg-gray-700 text-slate-100">
+                    <td>{i + 1}</td>
+                    <td className="tdimg">{element.id}</td>
+                    <td className="tdimg"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
+                    <td className="tid"><h4>@{element.login}</h4></td>
+                    <td>{element.type}</td>
+                    <td><button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></td>
+
+                  </tr>
+                  <hr />
+                </>
+              )
+            })}
+
+          </table>
+        }
+
+        {following.length >= 1 &&
+
           <table>
             <tr>
               <th>id</th>
@@ -90,18 +124,18 @@ export default function Home() {
               <hr />
             </tr>
             <hr />
-            {followers.map((element) => {
+            {following.map((ele) => {
               return (
                 <>
                   <tr>
-                    <td>{element.id}</td>
-                    <td> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
-                    <td><h3>@{element.login}</h3></td>
-                    <td>{element.type}</td>
+                    <td>{ele.id}</td>
+                    <td> <img className="rounded-circle" src={ele.avatar_url} width={100} alt="" /></td>
+                    <td><h3>@{ele.login}</h3></td>
+                    <td>{ele.type}</td>
                     <td><button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></td>
 
                   </tr>
-                  <hr/>
+                  <hr />
                 </>
               )
             })}
