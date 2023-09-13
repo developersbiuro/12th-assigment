@@ -51,7 +51,7 @@ export default function Home() {
             <button onClick={onClickHandler} className="btn btn-outline-info" >Fetch User</button>
 
           </div>
-          
+
         </div>
       </div>
 
@@ -70,8 +70,8 @@ export default function Home() {
                     <h5 className="cdc"> <small> @ {data.login} </small></h5>
                     < hr />
                     <h6 className=" cdc"> <b>{data.bio}</b>  </h6>
-                    <p className="card-text cdc"><span className=" cdc">{data.followers} - Followers <button onClick={onClickHandler} className="btn btn-outline-light btnc" > Get Followers</button></span></p>
-                    <p className="card-text cdc"><span className=" cdc">{data.following} - Following <button onClick={onClickHandler} className="btn btn-outline-light btnc" > Get Following</button></span></p>
+                    <p className="card-text cdc"><span className=" cdc">{data.followers} - Followers <button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></span></p>
+                    <p className="card-text cdc"><span className=" cdc">{data.following} - Following <button onClick={onFollowingHandler} className="btn btn-outline-light btnc" > Get Following</button></span></p>
                   </div>
                 </div>
               </div>
@@ -86,15 +86,23 @@ export default function Home() {
               <th>avator</th>
               <th>name</th>
               <th>type</th>
+              <th>Get Followers</th>
+              <hr />
             </tr>
+            <hr />
             {followers.map((element) => {
               return (
-                <tr>
-                  <td>{element.id}</td>
-                  <td> <img src={element.avatar_url} width={50} alt="" /></td>
-                  <td>{element.login}</td>
-                  <td>{element.type}</td>
-                </tr>
+                <>
+                  <tr>
+                    <td>{element.id}</td>
+                    <td> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
+                    <td><h3>@{element.login}</h3></td>
+                    <td>{element.type}</td>
+                    <td><button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></td>
+
+                  </tr>
+                  <hr/>
+                </>
               )
             })}
 
