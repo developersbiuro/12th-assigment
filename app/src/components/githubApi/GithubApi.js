@@ -13,19 +13,21 @@ export default function GithubApi() {
 
     const [userName, setUserName] = useState(null)
     const [followers, setFollowers] = useState([])
-    const [following, setFollowing] = useState([])
+    const [selectedUser, setSelectedUser] = useState(null);
     const [data, setData] = useState("")
     const onChangeHandler = (e) => {
         setUserName(e.target.value)
     }
-    const onClickHandler = async () => {
+    const onClickHandler = async (userNme) => {
         setFollowers([])
-        
+
 
         let response = await fetch(`https://api.github.com/users/${userName}`)
         response = await response.json()
         setData(response)
-        console.log(response);
+        console.log(response.data);
+
+        setSelectedUser({ login: userName });
 
     }
     const onFollowerHandler = async () => {
@@ -99,15 +101,60 @@ export default function GithubApi() {
                             {followers.map((element, i) => {
                                 return (
                                     <>
-                                        <tr className=" trr"  >
+                                        <tr className=" trr" key={i}  >
                                             <td className="padl">{i + 1})</td>
                                             <td className="tdd padl">{element.id}</td>
                                             <td className="tdd"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
                                             <td className="tid"><h4>@{element.login}</h4></td>
                                             <td className="tdd">{element.type}</td>
-                                            <td className="tdd"><button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></td>
+                                            <td className="tdd"><button onClick={() => onFollowerHandler(element.login)} className="btn btn-outline-light btnc" > Get Followers</button></td>
 
                                         </tr>
+                                        {selectedUser?.login === element.login && (
+                                            <tr>
+                                                <td>
+                                                    {data.length > 0 &&
+
+                                                        <table className="mar">
+
+                                                            <tbody className="mar">
+
+                                                                <tr >
+                                                                    <th>Sr#</th>
+                                                                    <th>id</th>
+                                                                    <th>avator</th>
+                                                                    <th>name</th>
+                                                                    <th>type</th>
+
+
+                                                                </tr>
+
+                                                                {data.map((elemeent, i) => {
+                                                                    return (
+                                                                        <small>
+                                                                            <tr className=" trr"  >
+                                                                                <td className="padl">{i + 1})</td>
+                                                                                <td className="tdd padl">{elemeent.id}</td>
+                                                                                <td className="tdd"> <img className="rounded-circle" src={elemeent.avatar_url} width={100} alt="" /></td>
+                                                                                <td className="tid"><h4>@{elemeent.login}</h4></td>
+                                                                                <td className="tdd">{elemeent.type}</td>
+
+
+                                                                            </tr>
+
+
+                                                                        </small>
+                                                                    )
+                                                                })}
+                                                            </tbody>
+
+                                                        </table>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        )
+
+                                        }
 
 
                                     </>
@@ -117,7 +164,11 @@ export default function GithubApi() {
 
                     </table>
                 }
-                
+
+                <small>
+
+                </small>
+
 
             </div>
 
