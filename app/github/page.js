@@ -2,7 +2,10 @@
 import { useState } from "react";
 import axios from "axios";
 // https://api.github.com/users/naveed-rana/
-export default function Github() {
+
+
+export default function Page() {
+    
     const [userName, setUserName] = useState(null)
     const [followers, setFollowers] = useState([])
     const [data, setData] = useState(null)
@@ -23,52 +26,53 @@ export default function Github() {
         console.log("response", response.data);
         setFollowers(response.data)
 
+
     }
     const onFollowingHandler = async () => {
-        let response = await axios.get(data.following_url)
+        let response = await axios.get(`https://api.github.com/users/${userName}/following`)
         console.log("response", response.data);
         setFollowers(response.data)
-
     }
-    return (
-        <div>
-            <label htmlFor="userName">Enter UserName:</label>
-            <input type="text" onChange={onChangeHandler} />
-            <button onClick={onClickHandler}>search</button>
+        return (
+            <div>
+                <label htmlFor="userName">Enter UserName:</label>
+                <input type="text" onChange={onChangeHandler} />
+                <button onClick={onClickHandler}>search</button>
 
-            {data &&
-                <>
-                    <h1>Github user</h1>
-                    <img src={data.avatar_url} width={100} alt="" />
-                    <span>bio: {data.bio} - {data.followers}</span>
-                    <button onClick={onFollowerHandler}>Get followers</button>
-                </>
-            }
+                {data &&
+                    <>
+                        <h1>Github user</h1>
+                        <img src={data.avatar_url} width={100} alt="" />
+                        <span>bio: {data.bio} - {data.followers}</span>
+                        <button onClick={onFollowerHandler}>Get followers</button>
+                        <button onClick={onFollowingHandler}>Get following</button>
+                    </>
+                }
 
 
-            {followers.length >= 1 &&
+                {followers.length >= 1 &&
 
-                <table>
-                    <tr>
-                        <th>id</th>
-                        <th>avator</th>
-                        <th>name</th>
-                        <th>type</th>
-                    </tr>
-                    {followers.map((element) => {
-                        return (
-                            <tr>
-                                <td>{element.id}</td>
-                                <td> <img src={element.avatar_url} width={50} alt="" /></td>
-                                <td>{element.login}</td>
-                                <td>{element.type}</td>
-                            </tr>
-                        )
-                    })}
+                    <table>
+                        <tr>
+                            <th>id</th>
+                            <th>avator</th>
+                            <th>name</th>
+                            <th>type</th>
+                        </tr>
+                        {followers.map((element) => {
+                            return (
+                                <tr>
+                                    <td>{element.id}</td>
+                                    <td> <img src={element.avatar_url} width={50} alt="" /></td>
+                                    <td>{element.login}</td>
+                                    <td>{element.type}</td>
+                                </tr>
+                            )
+                        })}
 
-                </table>
-            }
+                    </table>
+                }
 
-        </div>
-    )
-}
+            </div>
+        )
+    }
