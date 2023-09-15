@@ -15,6 +15,7 @@ export default function GithubApi() {
     const [followers, setFollowers] = useState([])
     const [selectedUser, setSelectedUser] = useState(null);
     const [data, setData] = useState("")
+    const [followerFollowers, setFollowerFollowers] = useState({});
     const onChangeHandler = (e) => {
         setUserName(e.target.value)
     }
@@ -46,6 +47,16 @@ export default function GithubApi() {
         let response = await axios.get(`https://api.github.com/users/${setSelectedUser}/followers`)
         setSelectedUser()
     }
+    const handleFetchFollowerFollowers = async (follower) => {
+        try {
+            const response = await fetch(`https://api.github.com/users/${follower.login}/followers`);
+            const followerFollowersData = await response.json();
+            setFollowerFollowers({ ...followerFollowers, [follower.login]: followerFollowersData });
+            console.log(followerFollowersData);
+        } catch (error) {
+            console.error(`Error fetching ${follower.login}'s followers:`, error);
+        }
+    };
     return (
         < div className="bd">
             <Navbar />
@@ -99,26 +110,26 @@ export default function GithubApi() {
                                     <th>avator</th>
                                     <th>name</th>
                                     <th>type</th>
-                                    <th>Get Followers</th>
+                                    {/* <th>Get Followers</th> */}
 
                                 </tr>
 
                                 {followers.map((element, i) => {
                                     return (
                                         <>
-                                            <tr className=" trr" key={i}  >
+                                            <tr className=" trr" key={element.login}  >
                                                 <td className="padl">{i + 1})</td>
                                                 <td className="tdd padl">{element.id}</td>
                                                 <td className="tdd"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
                                                 <td className="tid"><h4>@{element.login}</h4></td>
                                                 <td className="tdd">{element.type}</td>
-                                                <td className="tdd"><button onClick={() => selectedUserFollower(element.login)} className="btn btn-outline-light btnc" > Get Followers</button></td>
+                                                {/* <td className="tdd"><button onClick={() => handleFetchFollowerFollowers(element.login)} className="btn btn-outline-light btnc" > Get Followers</button></td> */}
 
                                             </tr>
                                             {true && (
                                                 <tr>
                                                     <td>
-                                                        {selectedUser.length > 0 &&
+                                                        {followerFollowers.length > 0 &&
 
                                                             <table className="mar">
 
@@ -134,7 +145,7 @@ export default function GithubApi() {
 
                                                                     </tr>
 
-                                                                    {selectedUser.map((elemeent, i) => {
+                                                                    {followerFollowers.map((elemeent, i) => {
                                                                         return (
                                                                             <small>
                                                                                 <tr className=" trr"  >
