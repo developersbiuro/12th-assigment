@@ -25,7 +25,7 @@ export default function GithubApi() {
         let response = await fetch(`https://api.github.com/users/${userName}`)
         response = await response.json()
         setData(response)
-        console.log(response.data);
+        console.log(response);
 
         setSelectedUser({ login: userName });
 
@@ -41,6 +41,10 @@ export default function GithubApi() {
         console.log("response", response2.data);
         setFollowers(response2.data)
 
+    }
+    const selectedUserFollower = async (userName) => {
+        let response = await axios.get(`https://api.github.com/users/${setSelectedUser}/followers`)
+        setSelectedUser()
     }
     return (
         < div className="bd">
@@ -62,107 +66,109 @@ export default function GithubApi() {
             {/* Fetched USer Card */}
             <div className="container mar">
                 {data &&
-                    <>
-                        <div className="card mb-3 cd" >
-                            <div className="row g-0">
-                                <div className="col-md-4">
-                                    <img src={data.avatar_url} className="titl img-fluid rounded-circle cardimg" alt=" " />
-                                </div>
-                                <div className="col-md-8 ">
-                                    <div className="card-body cdc cardmar">
-                                        <h1 className="titl cdc"> {" "} {data.name} </h1>
-                                        <h5 className="cdc"> <small> @ {data.login} </small></h5>
-                                        < hr />
-                                        <h6 className=" cdc"> <b>{data.bio}</b>  </h6>
-                                        <p className="card-text cdc"><span className=" cdc">{data.followers} - Followers <button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></span></p>
-                                        <p className="card-text cdc"><span className=" cdc">{data.following} - Following <button onClick={onFollowingHandler} className="btn btn-outline-light btnc" > Get Following</button></span></p>
-                                    </div>
+
+                    <div className="card mb-3 cd" >
+                        <div className="row g-0">
+                            <div className="col-md-4">
+                                <img src={data.avatar_url} className="titl img-fluid rounded-circle cardimg" alt=" " />
+                            </div>
+                            <div className="col-md-8 ">
+                                <div className="card-body cdc cardmar">
+                                    <h1 className="titl cdc"> {" "} {data.name} </h1>
+                                    <h5 className="cdc"> <small> @ {data.login} </small></h5>
+                                    < hr />
+                                    <h6 className=" cdc"> <b>{data.bio}</b>  </h6>
+                                    <p className="card-text cdc"><span className=" cdc">{data.followers} - Followers <button onClick={onFollowerHandler} className="btn btn-outline-light btnc" > Get Followers</button></span></p>
+                                    <p className="card-text cdc"><span className=" cdc">{data.following} - Following <button onClick={onFollowingHandler} className="btn btn-outline-light btnc" > Get Following</button></span></p>
                                 </div>
                             </div>
-                        </div></>
+                        </div>
+                    </div>
                 }
 
                 {followers.length >= 1 &&
+                    <div className="over">
 
-                    <table className="mar">
+                        <table className="mar">
 
-                        <tbody className="mar">
+                            <tbody className="mar">
 
-                            <tr >
-                                <th>Sr#</th>
-                                <th>id</th>
-                                <th>avator</th>
-                                <th>name</th>
-                                <th>type</th>
-                                <th>Get Followers</th>
+                                <tr >
+                                    <th>Sr#</th>
+                                    <th>id</th>
+                                    <th>avator</th>
+                                    <th>name</th>
+                                    <th>type</th>
+                                    <th>Get Followers</th>
 
-                            </tr>
+                                </tr>
 
-                            {followers.map((element, i) => {
-                                return (
-                                    <>
-                                        <tr className=" trr" key={i}  >
-                                            <td className="padl">{i + 1})</td>
-                                            <td className="tdd padl">{element.id}</td>
-                                            <td className="tdd"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
-                                            <td className="tid"><h4>@{element.login}</h4></td>
-                                            <td className="tdd">{element.type}</td>
-                                            <td className="tdd"><button onClick={() => onFollowerHandler(element.login)} className="btn btn-outline-light btnc" > Get Followers</button></td>
+                                {followers.map((element, i) => {
+                                    return (
+                                        <>
+                                            <tr className=" trr" key={i}  >
+                                                <td className="padl">{i + 1})</td>
+                                                <td className="tdd padl">{element.id}</td>
+                                                <td className="tdd"> <img className="rounded-circle" src={element.avatar_url} width={100} alt="" /></td>
+                                                <td className="tid"><h4>@{element.login}</h4></td>
+                                                <td className="tdd">{element.type}</td>
+                                                <td className="tdd"><button onClick={() => selectedUserFollower(element.login)} className="btn btn-outline-light btnc" > Get Followers</button></td>
 
-                                        </tr>
-                                        {selectedUser?.login === element.login && (
-                                            <tr>
-                                                <td>
-                                                    {data.length > 0 &&
-
-                                                        <table className="mar">
-
-                                                            <tbody className="mar">
-
-                                                                <tr >
-                                                                    <th>Sr#</th>
-                                                                    <th>id</th>
-                                                                    <th>avator</th>
-                                                                    <th>name</th>
-                                                                    <th>type</th>
-
-
-                                                                </tr>
-
-                                                                {data.map((elemeent, i) => {
-                                                                    return (
-                                                                        <small>
-                                                                            <tr className=" trr"  >
-                                                                                <td className="padl">{i + 1})</td>
-                                                                                <td className="tdd padl">{elemeent.id}</td>
-                                                                                <td className="tdd"> <img className="rounded-circle" src={elemeent.avatar_url} width={100} alt="" /></td>
-                                                                                <td className="tid"><h4>@{elemeent.login}</h4></td>
-                                                                                <td className="tdd">{elemeent.type}</td>
-
-
-                                                                            </tr>
-
-
-                                                                        </small>
-                                                                    )
-                                                                })}
-                                                            </tbody>
-
-                                                        </table>
-                                                    }
-                                                </td>
                                             </tr>
-                                        )
+                                            {true && (
+                                                <tr>
+                                                    <td>
+                                                        {selectedUser.length > 0 &&
 
-                                        }
+                                                            <table className="mar">
+
+                                                                <tbody className="mar">
+
+                                                                    <tr >
+                                                                        <th>Sr#</th>
+                                                                        <th>id</th>
+                                                                        <th>avator</th>
+                                                                        <th>name</th>
+                                                                        <th>type</th>
 
 
-                                    </>
-                                )
-                            })}
-                        </tbody>
+                                                                    </tr>
 
-                    </table>
+                                                                    {selectedUser.map((elemeent, i) => {
+                                                                        return (
+                                                                            <small>
+                                                                                <tr className=" trr"  >
+                                                                                    <td className="padl">{i + 1})</td>
+                                                                                    <td className="tdd padl">{elemeent.id}</td>
+                                                                                    <td className="tdd"> <img className="rounded-circle" src={elemeent.avatar_url} width={100} alt="" /></td>
+                                                                                    <td className="tid"><h4>@{elemeent.login}</h4></td>
+                                                                                    <td className="tdd">{elemeent.type}</td>
+
+
+                                                                                </tr>
+
+
+                                                                            </small>
+                                                                        )
+                                                                    })}
+                                                                </tbody>
+
+                                                            </table>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            )
+
+                                            }
+
+
+                                        </>
+                                    )
+                                })}
+                            </tbody>
+
+                        </table>
+                    </div>
                 }
 
                 <small>
