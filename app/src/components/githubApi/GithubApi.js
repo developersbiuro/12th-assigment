@@ -19,7 +19,7 @@ export default function GithubApi() {
     const onChangeHandler = (e) => {
         setUserName(e.target.value)
     }
-    const onClickHandler = async (userNme) => {
+    const onClickHandler = async () => {
         setFollowers([])
 
 
