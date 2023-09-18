@@ -28,7 +28,7 @@ export default function GithubApi() {
         setData(response)
         console.log(response);
 
-        setSelectedUser({login: userName});
+        setSelectedUser({ login: userName });
 
     }
     const onFollowerHandler = async () => {
@@ -51,8 +51,8 @@ export default function GithubApi() {
         try {
             const response = await fetch(`https://api.github.com/users/${follower}/followers`);
             const followerFollowersData = await response.json();
-            setFollowerFollowers(followerFollowersData );
-            setSelectedUser({login: follower})
+            setFollowerFollowers(followerFollowersData);
+            setSelectedUser({ login: follower })
             console.log(followerFollowersData);
         } catch (error) {
             console.error(`Error fetching ${follower.login}'s followers:`, error);
@@ -61,6 +61,7 @@ export default function GithubApi() {
     return (
         < div className="bd">
             <Navbar />
+
             <div className="container mar">
                 <h1 className="mar ul"><b><b className="mar">"GITHUB Api Program"</b></b></h1>
                 <div>
@@ -127,51 +128,45 @@ export default function GithubApi() {
                                                 <td className="tdd"><button onClick={() => handleFetchFollowerFollowers(element.login)} className="btn btn-outline-light btnc" > Get Followers</button></td>
 
                                             </tr>
-                                            {selectedUser.login === element.login && (
-                                                <>
-                                                  
+                                            
+                                                {selectedUser.login === element.login && (
+                                                    <>
+
                                                         {followerFollowers.length > 0 &&
 
-                                                            <table className="mar">
+                                                            <>
+                                                                <tr >
+                                                                    <th>Sr#</th>
+                                                                    <th>id</th>
+                                                                    <th>avator</th>
+                                                                    <th>name</th>
+                                                                    <th className="padl">type</th>
+                                                                </tr>
 
-                                                                <tbody className="mar">
+                                                                {followerFollowers.map((elemeent, i) => {
+                                                                    return (
 
-                                                                    <tr >
-                                                                        <th>Sr#</th>
-                                                                        <th>id</th>
-                                                                        <th>avator</th>
-                                                                        <th>name</th>
-                                                                        <th>type</th>
-
-
-                                                                    </tr>
-
-                                                                    {followerFollowers.map((elemeent, i) => {
-                                                                        return (
-                                                                            
-                                                                                <tr className="" >
-                                                                                    <td >{i + 1})</td>
-                                                                                    <td >{elemeent.id}</td>
-                                                                                    <td > <img className="rounded-circle" src={elemeent.avatar_url} width={50} alt="" /></td>
-                                                                                    <td ><h4>@{elemeent.login}</h4></td>
-                                                                                    <td >{elemeent.type}</td>
+                                                                        <tr className="trrr" >
+                                                                            <td >{i + 1})</td>
+                                                                            <td >{elemeent.id}</td>
+                                                                            <td > <img className="rounded-circle" src={elemeent.avatar_url} width={50} alt="" /></td>
+                                                                            <td ><h4>@{elemeent.login}</h4></td>
+                                                                            <td className="padl">{elemeent.type}</td>
+                                                                        </tr>
 
 
-                                                                                </tr>
 
-
-                                                                            
-                                                                        )
-                                                                    })}
-                                                                </tbody>
-
-                                                            </table>
+                                                                    )
+                                                                })}
+                                                            </>
                                                         }
-                                                    
-                                                </>
-                                            )
 
-                                            }
+                                                    </>
+                                                )
+
+                                                }
+                                        
+
 
 
                                         </>
